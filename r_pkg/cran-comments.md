@@ -5,42 +5,29 @@ This is the initial CRAN submission of `jouriepi` (version 1.0.0).
 ## Test environments
 
 * Windows 11 x64 (build 26100)
-* R 4.5.1 (2025-06-13 ucrt), x86_64-w64-mingw32
+* R 4.5.1 (ucrt), x86_64-w64-mingw32
 * testthat 3.3.2
 * Pandoc 3.13
-* TinyTeX / TeX Live 2026
+* MiKTeX 25.12 (`pdflatex`)
+
+The package test suite completed with 203 passes, 0 failures, 0 warnings and
+0 skips.
 
 ## R CMD check results
 
-Command:
+`R CMD build r_pkg` completed successfully. The full manual-enabled command
+`R CMD check --as-cran jouriepi_1.0.0.tar.gz` completed with **0 errors,
+0 warnings and 3 NOTEs**. The PDF reference manual was generated successfully
+(`checking PDF version of manual ... OK`, 109 seconds).
 
-```powershell
-$R = "C:\Program Files\R\R-4.5.1\bin\R.exe"
-$env:PATH = "$env:APPDATA\TinyTeX\TinyTeX\bin\windows;$env:LOCALAPPDATA\Pandoc;$env:PATH"
-$env:LC_ALL = "C"
-$env:LANG = "C"
-$env:_R_CHECK_CRAN_INCOMING_REMOTE_ = "false"
-& $R CMD build r_pkg
-& $R CMD check --as-cran jouriepi_1.0.0.tar.gz
-```
+The package installed successfully, loaded and unloaded cleanly, passed R-code
+analysis, passed all Rd syntax/metadata/usage checks, ran all examples, and
+passed all 203 testthat expectations.
 
-Result: **0 errors, 0 warnings, 3 notes**.
+The remaining NOTEs are: (1) standard CRAN incoming feasibility note for a new
+submission; (2) inability to verify the current time in this environment; and
+(3) HTML manual validation/math rendering skipped because HTML Tidy (`tidy`)
+and the optional `V8` package are unavailable. Pandoc was detected and used.
 
-* The incoming-feasibility note identifies the maintainer and the license
-  expression (`AGPL (>= 3) + file LICENSE`); the package LICENSE file supplies
-  the required year and copyright holder.
-* The future-file-timestamp check could not verify the current time in this
-  environment.
-* HTML-manual validation was skipped because HTML Tidy (`tidy`) and optional
-  math rendering package `V8` are not installed. Pandoc and PDF manual checks
-  both ran successfully.
-
-Remote CRAN incoming checks were disabled for this local run because remote
-feasibility/time checks are not reliable in this environment. Repeat with
-network incoming checks enabled before submission.
-
-The package installed and loaded successfully. R syntax, namespace, dependency,
-S3, code-problem, Rd documentation, examples, tests and PDF manual generation
-passed. The PDF manual was generated successfully (14 pages). The testthat suite
-reported **203 passes, 0 failures, 0 warnings and 0 skips**. The generated PDF
-reference manual contains **15 pages**.
+There were no errors or warnings. Review the remaining notes before submission;
+HTML manual validation can be completed by installing HTML Tidy and `V8`.
