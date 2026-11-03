@@ -11,7 +11,7 @@ Description: Deterministic, offline-first statistical methods for clinical
     analysis, diagnostic accuracy, additive interaction, sensitivity analysis,
     outbreak curves and reproduction-number estimation. Functions return
     structured S3 results and have no graphical, browser or network side effects.
-License: MIT + file LICENSE
+License: AGPL-3 + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports: stats

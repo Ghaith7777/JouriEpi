@@ -1,8 +1,8 @@
 # JouriEpi v1.0.0 — Release Notes
 
 **Release date:** 2026-11-03  
-**License:** MIT  
-**Status:** Windows build and executable startup smoke test verified; maintainer Git commit/tag/push remains pending.
+**License:** GNU Affero General Public License v3.0 (AGPL-3.0)
+**Status:** Windows build and executable startup smoke test verified; this metadata update does not create a new binary build or release tag.
 
 ## Overview
 
@@ -68,4 +68,4 @@ The portable archive must be extracted as a whole; distributing only the executa
 
 ## Citation
 
-Please cite the software using the repository's `CITATION.cff`. A Zenodo archive DOI should be added to the citation metadata after the first archival release has been minted; no DOI is asserted in this release note.
+Please cite the software using the repository's `CITATION.cff` and archive DOI [10.5281/zenodo.23914379](https://doi.org/10.5281/zenodo.23914379). The project is distributed under the GNU Affero General Public License v3.0 (AGPL-3.0); see the complete root `LICENSE` file.

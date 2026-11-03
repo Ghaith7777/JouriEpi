@@ -1,5 +1,7 @@
 # JouriEpi: Clinical Epidemiological & Causal Inference Suite
 
+**License:** GNU Affero General Public License v3.0 (AGPL-3.0). See [LICENSE](LICENSE).
+
 **Air-Gapped, Privacy-Preserving Offline Analytical Engine**
 
 JouriEpi is an offline-first clinical epidemiology workspace and reusable Python package for 2×2 analysis, line-list stratification, diagnostic test accuracy, causal sensitivity analysis, and publication/regulatory-style reporting. Statistical methods are documented and no exact parity with legacy EpiTable 6.04 is claimed.

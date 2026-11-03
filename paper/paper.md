@@ -1,68 +1,78 @@
 ---
-title: 'JouriEpi: An Offline-First Desktop Workstation and Dual-Core R Library for Clinical Epidemiology and Diagnostic Decision Analytics'
+title: 'JouriEpi: A Dual-Engine Clinical Workstation and CRAN-Compliant R Library for Epidemiological Analysis'
 tags:
   - epidemiology
   - biostatistics
-  - clinical decision support
-  - diagnostic test accuracy
+  - clinical research
   - R
   - Python
-  - reproducible research
-  - offline-first
+  - decision curve analysis
 authors:
   - name: Ghaith Baccari
+    orcid: ""
     affiliation: 1
 affiliations:
-  - name: Faculty of Medicine of Sfax, University of Sfax, Tunisia
+  - name: Faculté de Médecine de Sfax, Université de Sfax
     index: 1
-date: 2026-11-03
+date: 03 November 2026
+archive_doi: "10.5281/zenodo.23914379"
 bibliography: paper.bib
 ---
 
 # Summary
 
-JouriEpi is an offline-first software ecosystem for clinical epidemiology and diagnostic decision analytics. It combines a native PySide6 desktop workstation, backed by a Python statistical engine, with `jouriepi`, a scriptable base-R package. The desktop application is intended to make common analyses and reporting workflows accessible through a point-and-click interface, while the R package provides a reproducible programming interface for analysts who prefer script-based workflows. Both engines operate locally and are designed not to require cloud services or telemetry for analysis.
+JouriEpi is an offline-first software project for epidemiological and clinical research. It combines a native desktop workstation, implemented in Python and Qt, with a separately installable R package. The desktop application gives clinicians and researchers a graphical environment for common epidemiological calculations, diagnostic test evaluation, line-list exploration, and report generation. The R package provides a scriptable interface for reproducible analyses in R workflows. Both engines are designed to perform analysis locally, without requiring a hosted service or transmitting study data to an application telemetry endpoint.
 
-The software covers 2×2 association analysis, stratified comparisons, diagnostic accuracy, clinical decision analysis, sensitivity analysis for unmeasured confounding, and epidemiological line-list workflows. It exposes method labels, assumptions, and undefined estimates rather than silently changing the input data or applying continuity corrections. The project also generates Word and LaTeX reports and reproducibility scripts. The R package uses base R and the recommended `stats` package for its runtime statistical dependencies.
+The software brings together methods that are often used at different stages of a clinical epidemiology workflow: 2×2 association measures, stratified summaries, diagnostic accuracy, receiver operating characteristic (ROC) analysis, decision curve analysis, sensitivity analysis for unmeasured confounding, and outbreak line-list summaries. It provides explicit method names and exposes undefined or non-estimable results instead of silently changing input cells or substituting an undocumented calculation. Outputs include structured results, plots, Word and LaTeX reports, and reproducibility scripts. JouriEpi is research software and does not provide clinical recommendations, establish causality, or replace statistical review and clinical validation.
 
 # Statement of need
 
-Clinical epidemiology frequently involves sensitive patient-level data. Moving line lists or clinical datasets to third-party cloud services can create governance, confidentiality, jurisdiction, and institutional approval concerns. An offline-first architecture allows analysis to take place on a locally controlled workstation without requiring a remote analysis service. JouriEpi is designed around local processing and no application telemetry; this is an architectural design objective, not a substitute for an institution's security assessment, operating-system controls, or network-isolation verification.
+Clinical epidemiology teams often combine data preparation, statistical calculations, interpretation, and reporting across several tools. This can create friction between users who need an accessible graphical workflow and analysts who need transparent, scriptable calculations. It can also complicate governance when study data cannot be transferred to external services. JouriEpi addresses this workflow problem by pairing a locally executed desktop interface with a reusable R library, while keeping calculations in inspectable statistical code.
 
-A second need is the workflow gap between clinicians and quantitative researchers. Clinicians may need accessible, point-and-click calculations and readable reports without writing code. Biostatisticians and epidemiologists, in contrast, need scriptable methods, inspectable assumptions, reusable functions, and outputs that can be incorporated into reproducible R, LaTeX, or Word workflows. Pairing a native graphical workstation with an R package offers these complementary entry points while keeping statistical methods available outside the GUI.
+The intended users include clinical researchers, epidemiologists, public-health practitioners, and biostatisticians working with observational studies, diagnostic evaluations, and outbreak line lists. A clinician can use the workstation to inspect a contingency table and export a report; an analyst can use the R package and retain analysis steps in a version-controlled script. The two interfaces do not imply that every feature is implemented identically in both languages: known scope differences are documented, and parity should be judged from shared numerical fixtures and method-specific tests rather than assumed.
 
-Finally, clinical software should make methodological choices visible. Sparse 2×2 tables require careful handling: the optional Haldane–Anscombe adjustment is presented as a separate sensitivity estimate rather than silently replacing uncorrected estimates. Outbreak curves must distinguish cases from controls through an explicit selected case category. E-values are presented as sensitivity measures for unmeasured confounding, with odds-ratio conversion choices made explicit rather than treated as universally interchangeable. These design decisions aim to reduce avoidable analytical ambiguity; they do not guarantee that every study-specific source of bias has been addressed.
+A local-first design is useful where data governance requires processing on an institutionally controlled computer. It does not itself guarantee confidentiality: operating-system access controls, backups, encryption, network policy, and institutional review remain the responsibility of the deploying organization. The application is designed without application telemetry or a required remote analysis service; this architectural property is not presented as a substitute for an independent security assessment.
 
-# Core mathematical and statistical features
+# State of the field
 
-## Association and stratification
+Epi Info has historically combined data-entry forms, database construction, epidemiological analysis, mapping, and visualization for public-health practice. The US Centers for Disease Control and Prevention announced that product development and technical assistance would end after September 2025, while noting that existing desktop versions could remain operational [@epiinfoCDC]. JouriEpi does not attempt to reproduce Epi Info's broad surveillance and form-design environment. Instead, it concentrates on a narrower set of clinical epidemiology calculations and report workflows in a native workstation paired with a scriptable R interface.
 
-For a 2×2 table with exposed cases, exposed non-cases, unexposed cases, and unexposed non-cases denoted by (a,b,c,d), respectively, JouriEpi reports common association measures including the odds ratio, risk ratio, risk difference, and attributable fractions when identified by the sampling design and available margins. Confidence intervals include Wald risk-difference, Woolf odds-ratio, and Katz risk-ratio procedures [@woolf1955; @katz1978]. Fisher exact inference and Pearson and continuity-corrected chi-square tests are available. Sparse-data handling is explicit, and the optional Haldane–Anscombe estimate is kept distinct from the primary uncorrected result.
+OpenEpi provides web-based epidemiological and statistical calculators intended for public-health applications [@sullivan2009]. Its calculator-oriented delivery is useful for focused analyses, but differs from JouriEpi's integrated desktop workflow and reusable local R package. Users handling restricted data should still assess the data flow and deployment model of any web-based tool before entering study information.
 
-For stratified 2×2 data, the software reports stratum-specific and Mantel–Haenszel summaries and provides Breslow–Day and Tarone-adjusted homogeneity diagnostics. These methods can help assess whether a pooled association conceals heterogeneity or differs from crude estimates, including patterns often discussed in relation to Simpson's paradox. Diagnostic flags are descriptive aids and should not be interpreted as proof of confounding or a causal mechanism [@mantel1959; @breslow1980].
+The R package epiR provides a broad collection of functions for epidemiological and surveillance data, including measures of disease frequency, stratified associations, confidence intervals, and sample-size calculations [@stevenson2026]. It is an established and substantial alternative for users comfortable with R. JouriEpi should not be understood as replacing epiR or claiming methodological superiority. Its contribution is the combination of a native graphical workstation, a companion R package with a smaller documented scope, local report generation, and an explicit interface for common clinical analysis tasks. Contributing relevant methods upstream to established projects remains preferable where the requirements align; the paired desktop-and-library workflow and its local reporting integration are the reasons for maintaining this complementary project.
 
-## Diagnostic accuracy and clinical utility
+# Software design
 
-The diagnostic-analysis workflows include sensitivity, specificity, predictive values, likelihood ratios, and diagnostic odds ratios. ROC areas can be compared using DeLong's method for paired predictions evaluated on the same subjects or independent cohorts, as appropriate to the data structure [@delong1988]. Fagan calculations translate pre-test probability and likelihood ratios into post-test probability using Bayesian odds updating. Decision curve analysis evaluates net benefit across user-specified threshold probabilities and compares a model with treat-all and treat-none strategies [@vickers2006].
+## Mathematical and architectural design
 
-E-values provide a sensitivity-analysis summary for the minimum strength of association that an unmeasured confounder would need to have with exposure and outcome, conditional on the framework's assumptions, to explain an observed association [@vanderweele2017]. For odds ratios, JouriEpi requires the user to select a conversion approach; the resulting sensitivity estimate should not be mistaken for a direct risk-ratio estimate in all settings.
+The desktop application separates presentation from statistical computation. A Qt-based interface collects inputs and displays results, while a Python core performs calculations and returns structured outputs. The R package is maintained as a separate package under r_pkg/, with base R and stats as its runtime dependencies. This separation allows the graphical application to evolve without embedding statistical logic in widgets, and allows R users to call supported methods without launching a desktop session.
 
-## Line lists and outbreak dynamics
+For a 2×2 table, cells are ordered as exposed cases, exposed non-cases, unexposed cases, and unexposed non-cases, denoted by (a,b,c,d). The odds ratio is calculated as ad/bc, while cohort risk ratios compare a/(a+b) with c/(c+d). The software reports the risk difference alongside these measures where the sampling design identifies risks. Confidence intervals use named procedures, including Woolf, Katz, and Wald methods [@woolf1955; @katz1978]. The interface distinguishes uncorrected estimates from an optional Haldane–Anscombe sensitivity estimate; the correction is not silently applied to the primary result. Fisher exact and chi-square procedures are exposed as distinct tests.
 
-Line-list utilities support cleaning, data-health summaries, explicit category selection, and daily or weekly epidemic curves. The outbreak-curve workflow filters records to the user-selected case value before counting onset dates, preventing control records from being included merely because they have a valid date. The Python API also includes a discretized serial-interval approach and sliding-window Poisson-Gamma estimation of the instantaneous reproduction number (R_t), following the framework described by Cori and colleagues [@cori2013]. Estimates depend on the serial-interval assumptions, observation window, and completeness and timeliness of the input line list.
+For stratified tables, the software calculates stratum-specific estimates and Mantel–Haenszel summaries, with Breslow–Day/Tarone diagnostics for homogeneity [@mantel1959; @breslow1980]. Diagnostic workflows include sensitivity, specificity, predictive values, likelihood ratios, diagnostic odds ratios, ROC areas, and DeLong comparisons [@delong1988]. Decision curve analysis reports net benefit over selected threshold probabilities and compares model strategies with treat-all and treat-none approaches [@vickers2006]. E-values are provided as sensitivity measures for unmeasured confounding, with explicit choices when converting odds ratios [@vanderweele2017]. Line-list utilities support cleaning, data-health summaries, epidemic curves, and a sliding-window reproduction-number estimate based on the Cori framework [@cori2013].
 
-# Software architecture and numerical verification
+The design favors transparent method selection over automatic correction. Undefined estimates, zero-cell behavior, sampling-design limitations, and assumptions are surfaced to users. This makes some outputs less convenient than a single automatically adjusted number, but preserves the distinction between observed data and sensitivity analyses. The R package intentionally has a smaller feature set than the Python engine; unsupported advanced procedures are not silently replaced by approximate alternatives.
 
-The native desktop application is implemented with PySide6 and delegates calculations to a Python core separated from the presentation layer. It supports local data ingestion, interactive analysis workspaces, Word and LaTeX reporting, plot exports, and reproducibility-script generation. The R package is distributed from `r_pkg/` as `jouriepi`; its runtime imports base R and `stats` and does not require a web framework, cloud service, or compiled extension. The R package's test and documentation tooling is used during development and checking, not as a runtime dependency.
+## Software validation
 
-At the release-preparation verification point, the Python test suite completed with **309 passed**. The R package test suite had previously completed with **203 passed**, and the rebuilt source package completed `R CMD check --no-manual` with **Status: OK**, including its examples and `testthat` tests. The R check was performed without manual PDF generation; it should not be represented as a manual-enabled check. Test success is evidence of the exercised test cases, not proof of clinical validity, independent statistical peer review, or suitability for a regulated medical-device use.
+The release verification record reports 314 passing automated Python tests and 203 passing R testthat tests. The Python suite exercises statistical calculations, input validation, reporting, and Qt application behavior. R tests cover the functions implemented in the package, including shared numerical reference cases. The source package was also checked with R CMD check --no-manual, which completed with Status: OK and zero errors or warnings. The --no-manual option means that PDF manual generation was not tested because a LaTeX toolchain was not part of that check.
+
+These tests provide repeatable evidence for the behaviors they exercise; they do not demonstrate clinical validity, complete cross-language parity, or independent statistical peer review. In particular, advanced stratified methods in the Python engine have not all received independent reference validation in R. Users should verify the selected estimand, study design, assumptions, and analysis plan before interpreting results.
+
+# Research impact statement
+
+No independent institutional adoption or external publication using JouriEpi is claimed at this release stage. The near-term research contribution is a reproducible, inspectable implementation with automated test suites in both languages, documented numerical conventions, and distributable source and desktop artifacts. These materials allow reviewers and prospective users to examine calculations and rerun supported tests rather than relying on screenshots or untraceable calculator output. Evidence of external use, integration, and research publications should be added as it becomes available; the existence of tests and a release archive should not be mistaken for demonstrated community adoption.
+
+# AI usage disclosure
+
+Generative AI tools were used to assist with software development tasks, documentation editing, metadata preparation, and drafting and revising this software paper. The author remains responsible for the software and manuscript. Numerical claims in this paper are tied to the project's recorded automated test results and package-check output; AI-generated descriptions and edits require maintainer review against source code, test fixtures, and the cited literature before submission. AI assistance is not presented as independent validation.
 
 # Acknowledgements
 
-The author acknowledges the open-source maintainers of Python, R, PySide6, pandas, SciPy, python-docx, and the other libraries used in the software. The statistical methods are based on the literature cited below. Users and reviewers who identify reproducibility issues, numerical discrepancies, accessibility barriers, or documentation improvements are encouraged to report them through the project's issue tracker once the repository URL is established.
+The author acknowledges the maintainers and contributors of Python, R, Qt/PySide6, pandas, SciPy, and the other open-source libraries used by JouriEpi. The statistical methods are attributed to the publications cited below. No external financial support is identified in this manuscript; funding and institutional acknowledgements should be updated if applicable.
 
 # Availability
 
-The source distribution includes the native Python/PySide6 workstation, the `jouriepi` R package in `r_pkg/`, automated tests, and the documentation in this paper directory. The R source package is built as `jouriepi_1.0.0.tar.gz`; Windows builds produce an Inno Setup installer and a portable onedir archive. The software is licensed under the MIT License. The reserved Zenodo DOI for this release is [10.5281/zenodo.23914379](https://doi.org/10.5281/zenodo.23914379). The public repository URL should be added here once the maintainer publishes the source repository. The release metadata files `CITATION.cff` and `.zenodo.json` are provided to support archival and citation.
+JouriEpi is available from the public source repository at https://github.com/Ghaith7777/JouriEpi and is archived at [https://doi.org/10.5281/zenodo.23914379](https://doi.org/10.5281/zenodo.23914379). The project is distributed under the GNU Affero General Public License, version 3 (AGPL-3.0). The repository contains the native Python/Qt workstation, the jouriepi R package, automated tests, build scripts, and documentation. The Windows installer and portable archive are generated from the source tree; the R package source is provided separately. Users should consult the README for installation instructions and documented feature limitations.
 
 # References

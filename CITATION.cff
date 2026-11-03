@@ -1,14 +1,14 @@
 cff-version: 1.2.0
 message: "If you use JouriEpi in research, please cite this software."
-title: "JouriEpi: An Offline-First Desktop Workstation and Dual-Core R Library for Clinical Epidemiology and Diagnostic Decision Analytics"
+title: "JouriEpi: A Dual-Engine Clinical Workstation and CRAN-Compliant R Library for Epidemiological Analysis"
 authors:
-  - family-names: Baccari
-    given-names: Ghaith
-    affiliation: "Faculty of Medicine of Sfax, University of Sfax, Tunisia"
+  - family-names: "Baccari"
+    given-names: "Ghaith"
+    affiliation: "Faculté de Médecine de Sfax, Université de Sfax"
 version: 1.0.0
 date-released: 2026-11-03
-doi: 10.5281/zenodo.23914379
-license: MIT
+doi: "10.5281/zenodo.23914379"
+license: "AGPL-3.0"
 keywords:
   - epidemiology
   - biostatistics
