@@ -1,0 +1,18 @@
+{
+  "$schema": "golden_benchmarks.schema.json",
+  "schema_version": 3,
+  "status": "theoretical_reference_only_not_legacy_output",
+  "legacy_capture": null,
+  "provenance": {
+    "kind": "independently_calculated_formula_reference",
+    "legacy_executable_run": false,
+    "source_evidence": "EPITENG.HLP and EPITFRA.HLP document the measure and test families, not these captured numeric outputs.",
+    "reproduction": "Recompute the equations documented per case below; run pytest to compare the implementation with these independent arithmetic references.",
+    "warning": "These are not EpiTable 6.04 outputs and must not be described as legacy goldens."
+  },
+  "cases": [
+    {"name": "standard", "counts": [25, 15, 10, 30], "provenance": "Formula arithmetic: OR=(a*d)/(b*c); RR=(a/(a+b))/(c/(c+d)); RD=Re-Ru; AF_e=RD/Re; PAF=(Rpop-Ru)/Rpop.", "expected": {"odds_ratio": 5.0, "risk_ratio": 2.5, "risk_difference": 0.375, "attributable_fraction_exposed": 0.6, "population_attributable_fraction": 0.42857142857142855}, "expected_provenance": {"odds_ratio": "Direct cross-product ratio: (25*30)/(15*10)=5.", "risk_ratio": "(25/40)/(10/40)=2.5.", "risk_difference": "25/40-10/40=0.375.", "attributable_fraction_exposed": "(0.625-0.25)/0.625=0.6.", "population_attributable_fraction": "((35/80)-(10/40))/(35/80)=3/7."}},
+    {"name": "small_counts", "counts": [3, 1, 2, 4], "provenance": "Same equations as standard case, with exact integer margins and fractions evaluated independently.", "expected": {"odds_ratio": 6.0, "risk_ratio": 2.25, "risk_difference": 0.4166666666666667, "attributable_fraction_exposed": 0.5555555555555556, "population_attributable_fraction": 0.3333333333333333}, "expected_provenance": {"odds_ratio": "(3*4)/(1*2)=6.", "risk_ratio": "(3/4)/(2/6)=2.25.", "risk_difference": "3/4-2/6=5/12.", "attributable_fraction_exposed": "(3/4-2/6)/(3/4)=5/9.", "population_attributable_fraction": "((5/10)-(2/6))/(5/10)=1/3."}},
+    {"name": "zero_cell", "counts": [0, 12, 8, 15], "provenance": "Same risk equations; OR numerator is zero and no continuity correction is applied. PAF uses the direct population-risk definition, not a formula that divides by RR.", "expected": {"odds_ratio": 0.0, "risk_ratio": 0.0, "risk_difference": -0.34782608695652173, "attributable_fraction_exposed": null, "population_attributable_fraction": -0.5217391304347826}, "expected_provenance": {"odds_ratio": "(0*15)/(12*8)=0.", "risk_ratio": "(0/12)/(8/23)=0.", "risk_difference": "0/12-8/23=-8/23.", "attributable_fraction_exposed": "Undefined because exposed risk is zero and RD/Re divides by zero.", "population_attributable_fraction": "((8/35)-(8/23))/(8/35)=-12/23."}}
+  ]
+}

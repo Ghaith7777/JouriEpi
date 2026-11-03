@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jouriepi"
+version = "1.0.0"
+description = "Offline-first clinical epidemiology and causal inference Python package and workstation"
+requires-python = ">=3.11"
+dependencies = [
+    "scipy>=1.10.0",
+    "statsmodels>=0.14.0",
+    "pandas>=2.0.0",
+    "python-docx>=1.0.0",
+    "pyreadstat>=1.3.7",
+]
+
+[project.optional-dependencies]
+desktop = ["PySide6-Essentials>=6.6.0", "Pillow>=10.0.0", "openpyxl>=3.1.0", "xlrd>=2.0.0"]
+io = ["openpyxl>=3.1.0", "xlrd>=2.0.0"]
+test = ["pytest>=8.0.0", "openpyxl>=3.1.0", "xlrd>=2.0.0", "CairoSVG>=2.7.0", "streamlit>=1.40.0"]
+
+[project.scripts]
+jouriepi-app = "ui_qt.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "jouriepi*", "ui_qt*"]
+
+[tool.setuptools.package-data]
+ui_qt = ["assets/*.ico", "assets/*.png", "assets/*.svg", "assets/*.qss", "styles/*.qss"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

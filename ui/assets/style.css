@@ -1,0 +1,147 @@
+:root {
+  --epi-bg: #f1f5f9;
+  --epi-card: #ffffff;
+  --epi-text: #0f172a;
+  --epi-navy: #1e293b;
+  --epi-muted: #475569;
+  --epi-border: #e2e8f0;
+  --epi-accent: #0f766e;
+  --epi-focus: #0f766e;
+  --epi-accent-soft: #ccfbf1;
+  --epi-green: #166534;
+  --epi-green-bg: #dcfce7;
+  --epi-amber: #92400e;
+  --epi-amber-bg: #fef3c7;
+  --epi-red: #991b1b;
+  --epi-red-bg: #fee2e2;
+  --epi-radius: 8px;
+}
+
+/* Streamlit shell is intentionally invisible; app navigation remains in-app. */
+header[data-testid="stHeader"],
+div[data-testid="stDecoration"],
+div[data-testid="stStatusWidget"],
+button[data-testid="stDeployButton"],
+.stDeployButton,
+#MainMenu,
+footer { visibility: hidden !important; display: none !important; height: 0 !important; }
+
+/* Keep Streamlit's header in the layout so its sidebar restore control remains
+   mounted, while hiding the other header chrome. The control must stay usable
+   after the sidebar has been collapsed. */
+header[data-testid="stHeader"] {
+  display: block !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+[data-testid="collapsedControl"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  top: 0.75rem !important;
+  left: 0.75rem !important;
+  z-index: 999999 !important;
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .24) !important;
+}
+[data-testid="collapsedControl"] button,
+[data-testid="collapsedControl"] svg,
+[data-testid="collapsedControl"] path {
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+[data-testid="collapsedControl"]:hover {
+  background: #0f766e !important;
+  border-color: #5eead4 !important;
+}
+
+.stApp, [data-testid="stAppViewContainer"] { background: var(--epi-bg); color: var(--epi-text); }
+.block-container { max-width: 1500px; padding-top: 1rem; padding-bottom: 1.5rem; }
+h1, h2, h3, p, label, div, span, button, input, textarea, select {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+h1 { font-size: 1.72rem !important; letter-spacing: -.03em; font-weight: 760 !important; color: var(--epi-text); }
+h2 { font-size: 1.28rem !important; font-weight: 720 !important; color: var(--epi-text); }
+h3 { font-size: 1.02rem !important; font-weight: 700 !important; }
+p, label { font-size: .91rem; }
+[data-testid="stSidebar"] { background: var(--epi-card); border-right: 1px solid var(--epi-border); color: var(--epi-text); }
+[data-testid="stSidebar"] > div:first-child { padding-top: .8rem; }
+.app-subtitle { color: var(--epi-muted); font-size: .9rem; margin-top: -.5rem; margin-bottom: .6rem; }
+.brand-panel { border: 1px solid var(--epi-border); border-left: 4px solid var(--epi-accent); border-radius: var(--epi-radius); padding: .65rem .75rem; background: var(--epi-card); margin-bottom: .65rem; }
+.brand-title { color: var(--epi-text); font-weight: 800; font-size: 1.12rem; letter-spacing: -.02em; }
+.brand-meta { color: var(--epi-muted); font-size: .7rem; line-height: 1.55; overflow-wrap: anywhere; }
+.offline-badge { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid #99f6e4; border-radius: 999px; padding: .2rem .55rem; color: #115e59; background: #f0fdfa; font-size: .72rem; font-weight: 700; margin: .1rem 0 .65rem; }
+.section-kicker { color: var(--epi-accent); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; margin-bottom: .2rem; }
+.metric-card { height: 100%; box-sizing: border-box; background: var(--epi-card); border: 1px solid var(--epi-border); border-radius: var(--epi-radius); padding: .72rem .8rem; margin: .05rem 0 .35rem; min-height: 112px; box-shadow: 0 1px 2px rgb(15 23 42 / 3%); }
+.metric-label { font-size: .77rem; color: var(--epi-muted); font-weight: 650; }
+.metric-value { font-size: 1.6rem; font-weight: 780; letter-spacing: -.04em; line-height: 1.3; color: var(--epi-text); font-variant-numeric: tabular-nums; }
+.metric-detail { font-size: .72rem; color: var(--epi-muted); margin-top: .08rem; font-variant-numeric: tabular-nums; }
+.metric-status { font-size: .68rem; font-weight: 700; margin-top: .4rem; }
+.status-good { color: var(--epi-green); } .status-neutral { color: var(--epi-muted); } .status-warn { color: var(--epi-amber); }
+.contingency-grid { display: grid; grid-template-columns: minmax(90px,1.2fr) repeat(3,minmax(70px,1fr)); border-top: 1px solid var(--epi-border); border-left: 1px solid var(--epi-border); border-radius: 7px; overflow: hidden; margin: .3rem 0 .7rem; }
+.table-cell { min-width: 0; padding: .48rem .42rem; text-align: center; border-right: 1px solid var(--epi-border); border-bottom: 1px solid var(--epi-border); font-variant-numeric: tabular-nums; }
+.table-head { font-size: .73rem; font-weight: 750; background: var(--epi-bg); color: var(--epi-navy); }
+.row-head { text-align: left; font-size: .78rem; font-weight: 720; background: var(--epi-card); color: var(--epi-text); }
+.count-cell { font-weight: 700; color: var(--epi-text); }
+.total-cell { background: var(--epi-bg); color: var(--epi-muted); font-weight: 650; }
+.grand-total { background: var(--epi-accent-soft); font-weight: 800; color: #134e4a; }
+.expected-grid { grid-template-columns: minmax(90px,1.2fr) repeat(2,minmax(90px,1fr)); }
+.expected-low { background: var(--epi-amber-bg); color: var(--epi-amber); font-weight: 800; }
+.plot-panel, .result-panel { background: var(--epi-card); border: 1px solid var(--epi-border); border-radius: var(--epi-radius); padding: .7rem .8rem; margin: .35rem 0 .7rem; }
+.plot-panel svg { width: 100%; height: auto; display: block; }
+.summary-text { font-size: .94rem; line-height: 1.55; color: var(--epi-text); }
+.status-chip { display: inline-block; border-radius: 999px; padding: .25rem .55rem; font-size: .72rem; font-weight: 750; }
+.chip-good { color: var(--epi-green); background: var(--epi-green-bg); }
+.chip-warn { color: var(--epi-amber); background: var(--epi-amber-bg); }
+.chip-info { color: var(--epi-muted); background: var(--epi-bg); border: 1px solid var(--epi-border); }
+.muted-note, .stCaption { color: var(--epi-muted); font-size: .77rem; }
+.step-label { font-size: .75rem; color: var(--epi-muted); font-weight: 700; }
+.step-active { color: var(--epi-accent); }
+.stButton > button, [data-testid="stDownloadButton"] button { border-radius: 7px; font-weight: 680; min-height: 2.2rem; border: 1px solid var(--epi-border); color: var(--epi-text); background: var(--epi-card); }
+.stButton > button:hover, [data-testid="stDownloadButton"] button:hover { color: var(--epi-text); background: var(--epi-bg); border-color: var(--epi-accent); }
+.stButton > button[kind="primary"] { background: var(--epi-accent); border-color: var(--epi-accent); }
+.stButton > button:focus-visible, input:focus-visible, button:focus-visible, [role=combobox]:focus-visible, [role=radio]:focus-visible { outline: 3px solid var(--epi-focus) !important; outline-offset: 2px !important; }
+.stNumberInput input { font-variant-numeric: tabular-nums; }
+.stDataFrame, [data-testid="stTable"] { border: 1px solid var(--epi-border); border-radius: 7px; overflow: auto; max-width: 100%; }
+[data-testid="stDataFrame"] [role="gridcell"], [data-testid="stDataFrame"] [role="columnheader"] { padding-top: 2px !important; padding-bottom: 2px !important; }
+.stAlert { border-radius: 7px; padding-top: .45rem; padding-bottom: .45rem; }
+[data-testid="stTabs"] button[role="tab"] { border-radius: 6px 6px 0 0; font-weight: 700; padding-top: .42rem; padding-bottom: .42rem; }
+[data-testid="stTabs"] button[aria-selected="true"] { color: var(--epi-accent); border-bottom-color: var(--epi-accent); }
+[data-testid="stExpander"] { border-color: var(--epi-border); border-radius: 7px; }
+[data-testid="stTextInput"] input, [data-testid="stNumberInput"] input, [data-testid="stTextArea"] textarea,
+[data-testid="stSelectbox"] [role="combobox"], [data-testid="stMultiSelect"] [role="combobox"] {
+  background: var(--epi-card); color: var(--epi-text); border-color: var(--epi-border);
+}
+[data-testid="stTooltipContent"], [role="tooltip"] { color: var(--epi-text); }
+
+/* Tooltip high-contrast dark mode: cover Streamlit/BaseWeb and authored tooltips. */
+[data-theme="dark"] .tooltip,
+[data-theme="dark"] [data-tooltip]::after,
+[data-theme="dark"] [title]:hover::after,
+[data-theme="dark"] [data-baseweb="tooltip"],
+[data-theme="dark"] [data-testid="stTooltipContent"],
+[data-theme="dark"] div[role="tooltip"],
+[data-theme="dark"] [role="tooltip"],
+[data-theme="dark"] .stTooltip,
+[data-theme="dark"] [data-testid="stTooltip"] {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+}
+[data-theme="dark"] [role="tooltip"] *,
+[data-theme="dark"] [data-testid="stTooltipContent"] * {
+  color: #f8fafc !important;
+}
+::selection { background: var(--epi-accent-soft); color: var(--epi-text); }
+@media (max-width: 640px) { .block-container { padding-left: .7rem; padding-right: .7rem; } .metric-value { font-size: 1.35rem; } .metric-card { padding: .6rem; min-height: 100px; } .table-cell { padding: .4rem .2rem; font-size: .78rem; } .row-head { font-size: .72rem; } }

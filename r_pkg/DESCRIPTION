@@ -1,0 +1,29 @@
+Package: jouriepi
+Type: Package
+Title: Deterministic Clinical Epidemiology and Biostatistics Engine
+Version: 1.0.0
+Date: 2026-11-02
+Authors@R: person("Ghaith", "Baccari", role = c("aut", "cre"), email = "baccarighaith18@gmail.com")
+Author: Ghaith Baccari [aut, cre]
+Maintainer: Ghaith Baccari <baccarighaith18@gmail.com>
+Description: Deterministic, offline-first statistical methods for clinical
+    epidemiology and biostatistics, including contingency tables, stratified
+    analysis, diagnostic accuracy, additive interaction, sensitivity analysis,
+    outbreak curves and reproduction-number estimation. Functions return
+    structured S3 results and have no graphical, browser or network side effects.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: stats
+Suggests: testthat (>= 3.0.0), roxygen2
+Collate:
+    'association.R'
+    'association_2x2.R'
+    'stratification_advanced.R'
+    'clinical.R'
+    'linelist_outbreak.R'
+    'result.R'
+    'package.R'
+    'api_aliases.R'
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.1

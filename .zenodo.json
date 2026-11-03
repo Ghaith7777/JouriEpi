@@ -1,0 +1,25 @@
+{
+  "title": "JouriEpi: An Offline-First Desktop Workstation and Dual-Core R Library for Clinical Epidemiology and Diagnostic Decision Analytics",
+  "upload_type": "software",
+  "description": "JouriEpi is an offline-first clinical epidemiology software ecosystem comprising a native PySide6 desktop workstation and the jouriepi base-R package. The Python engine provides 2x2 association measures and confidence intervals, exact tests, stratified analysis and heterogeneity diagnostics, diagnostic test accuracy and DeLong ROC comparisons, Fagan post-test probabilities, decision curve analysis, E-value sensitivity analysis, line-list cleaning and outbreak curves, and Cori-style instantaneous reproduction-number estimation. The native application supports local analysis, Word and LaTeX reporting, reproducibility scripts, and plot exports. The R package provides a scriptable statistical interface built on base R and stats, with documented functions, examples, and testthat coverage. Both components are designed for local/offline workflows; users remain responsible for their institutional privacy, security, and clinical validation requirements.",
+  "creators": [
+    {
+      "name": "Ghaith Baccari",
+      "affiliation": "Faculty of Medicine of Sfax, University of Sfax, Tunisia"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "epidemiology",
+    "biostatistics",
+    "clinical decision support",
+    "diagnostic accuracy",
+    "R package",
+    "PySide6",
+    "offline-first",
+    "reproducible research"
+  ],
+  "communities": [
+    { "identifier": "zenodo" }
+  ]
+}

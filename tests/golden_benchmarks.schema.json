@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Modern EpiTable theoretical reference fixture",
+  "description": "Schema for formula-derived references only; this schema does not represent observed EpiTable output.",
+  "type": "object",
+  "required": ["$schema", "schema_version", "status", "legacy_capture", "provenance", "cases"],
+  "properties": {
+    "$schema": {"const": "golden_benchmarks.schema.json"},
+    "schema_version": {"const": 3},
+    "status": {"const": "theoretical_reference_only_not_legacy_output"},
+    "legacy_capture": {"type": "null"},
+    "provenance": {
+      "type": "object",
+      "required": ["kind", "legacy_executable_run", "source_evidence", "reproduction", "warning"],
+      "properties": {
+        "kind": {"const": "independently_calculated_formula_reference"},
+        "legacy_executable_run": {"const": false},
+        "source_evidence": {"type": "string", "minLength": 1},
+        "reproduction": {"type": "string", "minLength": 1},
+        "warning": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["name", "counts", "provenance", "expected", "expected_provenance"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "counts": {"type": "array", "prefixItems": [{"type": "integer", "minimum": 0}, {"type": "integer", "minimum": 0}, {"type": "integer", "minimum": 0}, {"type": "integer", "minimum": 0}], "minItems": 4, "maxItems": 4},
+          "provenance": {"type": "string", "minLength": 1},
+          "expected": {
+            "type": "object",
+            "required": ["odds_ratio", "risk_ratio", "risk_difference", "attributable_fraction_exposed", "population_attributable_fraction"],
+            "properties": {
+              "odds_ratio": {"type": ["number", "null"]},
+              "risk_ratio": {"type": ["number", "null"]},
+              "risk_difference": {"type": ["number", "null"]},
+              "attributable_fraction_exposed": {"type": ["number", "null"]},
+              "population_attributable_fraction": {"type": ["number", "null"]}
+            },
+            "additionalProperties": false
+          },
+          "expected_provenance": {
+            "type": "object",
+            "required": ["odds_ratio", "risk_ratio", "risk_difference", "attributable_fraction_exposed", "population_attributable_fraction"],
+            "properties": {
+              "odds_ratio": {"type": "string", "minLength": 1},
+              "risk_ratio": {"type": "string", "minLength": 1},
+              "risk_difference": {"type": "string", "minLength": 1},
+              "attributable_fraction_exposed": {"type": "string", "minLength": 1},
+              "population_attributable_fraction": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

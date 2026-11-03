@@ -1,0 +1,6 @@
+^\.Rhistory$
+^\.parity-smoke\.R$
+^jouriepi[.]Rcheck$
+^[.][.]Rcheck$
+^\.Rcheck$
+^jouriepi_[0-9].*\.tar\.gz$

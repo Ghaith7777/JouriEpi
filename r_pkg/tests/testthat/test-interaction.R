@@ -1,0 +1,16 @@
+test_that("additive interaction returns delta-method estimates", {
+  x <- additive_interaction(matrix(c(20,80, 25,75, 30,70, 40,60), nrow=4, byrow=TRUE))
+  expect_equal(unname(x$estimates$reri), 0.6190476190476191, tolerance=1e-12)
+  expect_equal(unname(x$estimates$attributable_proportion), 0.23214285714285715, tolerance=1e-12)
+  expect_equal(unname(x$estimates$synergy_index), 1.590909090909091, tolerance=1e-12)
+  expect_equal(x$estimates$reri_ci, c(-0.8213900348591567,2.0594852729543947), tolerance=1e-4)
+  expect_equal(length(x$estimates$reri_ci), 2)
+  expect_error(additive_interaction(matrix(c(0,80, 25,75, 30,70, 40,60), nrow=4, byrow=TRUE)))
+  rr <- additive_interaction(rr11=4, rr10=2, rr01=2, cov_matrix=diag(c(.04,.02,.02)))
+  expect_equal(rr$estimates$reri, 1)
+  expect_equal(rr$estimates$attributable_proportion, .25)
+  expect_equal(dim(rr$estimates$confidence_intervals), c(3L,2L))
+  expect_error(additive_interaction(rr11=2, rr10=1.5))
+  expect_error(additive_interaction(rr11=2, rr10=1.5, rr01=1.2,
+    cov_matrix=diag(c(-1,1,1))))
+})
