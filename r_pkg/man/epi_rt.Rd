@@ -51,3 +51,8 @@ A \code{jouriepi_analysis} object with Rt estimates and posterior parameters.
 Estimates instantaneous reproduction numbers with a discretized Gamma
 serial interval and a Gamma-Poisson sliding-window posterior.
 }
+\examples{
+dates <- seq(as.Date("2026-01-01"), by = "day", length.out = 8)
+cases <- data.frame(date = rep(dates, times = c(1, 2, 3, 4, 3, 2, 2, 1)))
+epi_rt(cases, "date", window = 3)
+}

@@ -26,3 +26,9 @@ Calculates pooled Mantel-Haenszel odds and risk ratios, RBG variance,
 Breslow-Day/Tarone homogeneity tests, stratum-specific intervals and
 Simpson reversal diagnostics.
 }
+\examples{
+fit <- epi_stratified(list(
+  younger = c(12, 8, 6, 14), older = c(20, 10, 10, 20)
+))
+fit$estimates$mantel_haenszel_odds_ratio
+}

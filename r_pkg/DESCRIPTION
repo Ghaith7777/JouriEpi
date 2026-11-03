@@ -1,17 +1,24 @@
 Package: jouriepi
 Type: Package
-Title: Deterministic Clinical Epidemiology and Biostatistics Engine
+Title: Clinical Epidemiology and Biostatistics Analysis Engine
 Version: 1.0.0
-Date: 2026-11-02
+Date: 2026-11-03
 Authors@R: person("Ghaith", "Baccari", role = c("aut", "cre"), email = "baccarighaith18@gmail.com")
 Author: Ghaith Baccari [aut, cre]
 Maintainer: Ghaith Baccari <baccarighaith18@gmail.com>
-Description: Deterministic, offline-first statistical methods for clinical
-    epidemiology and biostatistics, including contingency tables, stratified
-    analysis, diagnostic accuracy, additive interaction, sensitivity analysis,
-    outbreak curves and reproduction-number estimation. Functions return
-    structured S3 results and have no graphical, browser or network side effects.
-License: AGPL-3 + file LICENSE
+Description: Provides deterministic, offline-first methods for clinical
+    epidemiology and biostatistics. Includes 2x2 contingency-table estimates
+    (risk ratios, odds ratios and risk differences), exact and asymptotic tests,
+    and an explicitly labelled Haldane-Anscombe correction for odds-ratio
+    sensitivity analysis (Haldane, 1956). Additional methods cover Mantel-Haenszel
+    stratification, diagnostic accuracy, DeLong receiver-operating-characteristic
+    comparisons, additive interaction, VanderWeele-Ding E-values (VanderWeele
+    and Ding, 2017), decision-curve analysis (Vickers and Elkin, 2006), paired
+    McNemar analysis, Fagan post-test probabilities, line-list quality review,
+    epidemic curves and Cori-style reproduction-number estimation. Functions
+    return structured S3 results and perform no graphical, browser or network
+    operations.
+License: AGPL (>= 3) + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.1.0)
 Imports: stats

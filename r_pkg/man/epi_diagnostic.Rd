@@ -28,3 +28,7 @@ Computes sensitivity, specificity, predictive values, likelihood ratios,
 diagnostic odds ratio and related measures. Wilson score intervals are
 supplied for proportions; log-Wald intervals are used for LR and DOR.
 }
+\examples{
+fit <- epi_diagnostic(tp = 45, fp = 5, fn = 15, tn = 135)
+fit$estimates$sensitivity
+}

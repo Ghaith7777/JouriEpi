@@ -76,6 +76,8 @@
 #' @examples
 #' tab <- analyze_2x2(20, 80, 10, 90)
 #' tab$estimates$risk_ratio
+#' to_latex(tab)
+#' e_value(estimate = 2, confidence_interval = c(1.2, 3))
 #' strat <- stratified_analysis(list(
 #'   younger = c(12, 8, 6, 14), older = c(20, 10, 10, 20)
 #' ))

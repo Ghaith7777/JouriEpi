@@ -45,3 +45,6 @@ Calculates the minimum unmeasured-confounding association strength needed
 to explain away an effect estimate, after explicitly converting OR inputs
 to the risk-ratio scale using a selected method.
 }
+\examples{
+epi_evalue(estimate = 2, confidence_interval = c(1.2, 3))
+}

@@ -17,6 +17,11 @@
 #' @param haldane_anscombe Whether to include a separately labelled
 #'   Haldane-Anscombe odds-ratio sensitivity estimate.
 #' @return A \code{jouriepi_analysis} object with estimates, inputs and methods.
+#' @examples
+#' fit <- epi_2x2(a = 20, b = 80, c = 10, d = 90,
+#'   haldane_anscombe = TRUE)
+#' fit$estimates$risk_ratio
+#' fit$estimates$odds_ratio_haldane_anscombe
 #' @export
 NULL
 
@@ -38,6 +43,11 @@ jouri_2x2 <- epi_2x2
 #'   when supplied, must be unique and non-empty.
 #' @param conf_level Confidence interval coverage.
 #' @return A \code{jouriepi_analysis} object containing stratum and pooled results.
+#' @examples
+#' fit <- epi_stratified(list(
+#'   younger = c(12, 8, 6, 14), older = c(20, 10, 10, 20)
+#' ))
+#' fit$estimates$mantel_haenszel_odds_ratio
 #' @export
 NULL
 #' @rdname epi_stratified
@@ -63,6 +73,9 @@ jouri_stratified <- epi_stratified
 #'   rr11, rr10, rr01.
 #' @param conf_level Confidence interval coverage for direct RR analysis.
 #' @return A \code{jouriepi_analysis} object containing RERI, AP and SI.
+#' @examples
+#' epi_interaction(rr11 = 4, rr10 = 2, rr01 = 2,
+#'   cov_matrix = diag(c(0.04, 0.02, 0.02)))
 #' @export
 NULL
 #' @rdname epi_interaction
@@ -84,6 +97,9 @@ jouri_interaction <- epi_interaction
 #' @param alpha Significance level.
 #' @param conf_level Optional confidence coverage; overrides alpha when set.
 #' @return A \code{jouriepi_analysis} object with diagnostic metrics and intervals.
+#' @examples
+#' fit <- epi_diagnostic(tp = 45, fp = 5, fn = 15, tn = 135)
+#' fit$estimates$sensitivity
 #' @export
 NULL
 #' @rdname epi_diagnostic
@@ -106,6 +122,9 @@ jouri_diagnostic <- epi_diagnostic
 #' @param alpha Significance level for the AUC difference interval.
 #' @param outcomes2 Binary outcomes for the independent second cohort.
 #' @return A \code{jouriepi_analysis} object with AUCs, difference, interval and test.
+#' @examples
+#' scores <- c(0.1, 0.9, 0.3, 0.8, 0.2, 0.7)
+#' epi_roc_compare(scores, scores, c(0, 1, 0, 1, 0, 1))
 #' @export
 NULL
 #' @rdname epi_roc_compare
@@ -130,6 +149,8 @@ jouri_roc_compare <- epi_roc_compare
 #'   \code{baseline_risk}.
 #' @param baseline_risk Unexposed baseline risk required by baseline-risk conversion.
 #' @return A \code{jouriepi_analysis} object with point and confidence-limit E-values.
+#' @examples
+#' epi_evalue(estimate = 2, confidence_interval = c(1.2, 3))
 #' @export
 NULL
 #' @rdname epi_evalue
@@ -153,6 +174,10 @@ jouri_evalue <- epi_evalue
 #' @param prior_shape,prior_rate Gamma prior shape and rate.
 #' @param credible_level Posterior credible interval coverage.
 #' @return A \code{jouriepi_analysis} object with Rt estimates and posterior parameters.
+#' @examples
+#' dates <- seq(as.Date("2026-01-01"), by = "day", length.out = 8)
+#' cases <- data.frame(date = rep(dates, times = c(1, 2, 3, 4, 3, 2, 2, 1)))
+#' epi_rt(cases, "date", window = 3)
 #' @export
 NULL
 #' @rdname epi_rt

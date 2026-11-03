@@ -50,3 +50,7 @@ four-group case/non-case counts (00, 10, 01, 11) on the implemented
 saturated-logistic odds-ratio scale, or directly from three risk ratios.
 Optional covariance supports delta-method intervals for direct RR inputs.
 }
+\examples{
+epi_interaction(rr11 = 4, rr10 = 2, rr01 = 2,
+  cov_matrix = diag(c(0.04, 0.02, 0.02)))
+}

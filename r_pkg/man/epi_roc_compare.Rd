@@ -45,3 +45,7 @@ A \code{jouriepi_analysis} object with AUCs, difference, interval and test.
 Compares two AUCs using placement-value variance. Set \code{paired = FALSE}
 and provide \code{outcomes2} for independent cohorts.
 }
+\examples{
+scores <- c(0.1, 0.9, 0.3, 0.8, 0.2, 0.7)
+epi_roc_compare(scores, scores, c(0, 1, 0, 1, 0, 1))
+}

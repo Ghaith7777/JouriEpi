@@ -55,3 +55,9 @@ vector, or a 2x2 matrix/data frame. Rows are exposed and unexposed;
 columns are cases and non-cases. Returns risk, odds and difference
 estimates, confidence intervals and exact/asymptotic tests.
 }
+\examples{
+fit <- epi_2x2(a = 20, b = 80, c = 10, d = 90,
+  haldane_anscombe = TRUE)
+fit$estimates$risk_ratio
+fit$estimates$odds_ratio_haldane_anscombe
+}
