@@ -14,7 +14,7 @@ Description: Provides deterministic, offline-first methods for clinical
     Additional methods cover Mantel-Haenszel
     stratification, diagnostic accuracy, DeLong receiver-operating-characteristic
     comparisons, additive interaction, VanderWeele-Ding E-values (VanderWeele
-    and Ding, 2017) <doi:10.7326/M16-0828>, decision-curve analysis (Vickers and
+    and Ding, 2017) <doi:10.7326/M16-2607>, decision-curve analysis (Vickers and
     Elkin, 2006) <doi:10.1177/0272989X06295361>, paired
     McNemar analysis, Fagan post-test probabilities, line-list quality review,
     epidemic curves and Cori-style reproduction-number estimation (Cori et al.,
